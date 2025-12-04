@@ -1,0 +1,1382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Bring Me Your Problem Properties | Agent Partner Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Agent partner page for sending problem listings: stale, low-equity, distressed, or hard-to-sell. I’ll help you close more deals and protect your commission.">
+
+  <!-- Apple-style font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --gold: #d4af37;
+      --gold-soft: #f5df8c;
+      --gold-bright: #ffe9a9;
+      --purple: #3b0a45;
+      --purple-mid: #5e2e91;
+      --purple-dark: #140415;
+      --bg-dark: #050309;
+      --text-main: #f9f5ff;
+      --text-muted: #c7c1e2;
+      --card-bg: rgba(14, 7, 35, 0.96);
+      --border-subtle: rgba(255, 255, 255, 0.09);
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --shadow-soft: 0 20px 48px rgba(0, 0, 0, 0.75);
+      --shadow-chip: 0 10px 26px rgba(0, 0, 0, 0.65);
+      --transition-fast: 180ms ease-out;
+      --max-width: 1120px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background:
+        radial-gradient(circle at top, #5e2e91 0, #140415 32%, #050309 60%, #000 100%);
+      color: var(--text-main);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    main {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 24px 16px 60px;
+    }
+
+    section {
+      margin-top: 40px;
+    }
+
+    .section-header {
+      margin-bottom: 18px;
+    }
+
+    .section-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--gold-soft);
+      margin-bottom: 6px;
+    }
+
+    .section-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .section-title-row h2 {
+      font-size: 22px;
+      letter-spacing: -0.03em;
+    }
+
+    .section-title-row p {
+      font-size: 13px;
+      color: var(--text-muted);
+      max-width: 460px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-soft);
+      padding: 18px 18px 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at top left, rgba(212, 175, 55, 0.16), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(94, 46, 145, 0.26), transparent 60%);
+      opacity: 0.75;
+      pointer-events: none;
+    }
+
+    .card-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Brand */
+    .brand-row {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .brand-row img {
+      height: 40px;
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.7));
+    }
+
+    .brand-divider {
+      width: 38px;
+      height: 1px;
+      background: linear-gradient(90deg, var(--gold), var(--purple-mid));
+      opacity: 0.75;
+    }
+
+    .tag-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(245, 223, 140, 0.6);
+      background: rgba(9, 4, 28, 0.95);
+      font-size: 11px;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--gold-soft);
+      margin-bottom: 10px;
+    }
+
+    .tag-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--gold);
+      box-shadow: 0 0 12px rgba(212, 175, 55, 0.9);
+    }
+
+    /* HERO */
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 22px;
+      align-items: center;
+    }
+
+    .hero-title {
+      font-size: clamp(26px, 3.1vw, 32px);
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+      margin-bottom: 10px;
+    }
+
+    .hero-title span.emphasis {
+      background: linear-gradient(120deg, var(--gold), var(--gold-bright));
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-sub {
+      font-size: 15px;
+      color: var(--text-muted);
+      max-width: 520px;
+      margin-bottom: 14px;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .hero-badge {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      padding: 5px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: rgba(11, 5, 35, 0.95);
+      color: var(--text-muted);
+    }
+
+    .hero-badge.highlight {
+      border-color: rgba(212, 175, 55, 0.9);
+      color: var(--gold-soft);
+      box-shadow: 0 0 18px rgba(212, 175, 55, 0.7);
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .btn-primary {
+      appearance: none;
+      border: none;
+      border-radius: 999px;
+      padding: 11px 22px;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #140415;
+      background: radial-gradient(circle at top left, #fff6cf, var(--gold));
+      box-shadow:
+        0 0 0 0 rgba(212, 175, 55, 0.45),
+        0 18px 40px rgba(0, 0, 0, 0.8);
+      position: relative;
+      overflow: hidden;
+      animation: glow-pulse 2.4s ease-in-out infinite;
+      transition:
+        transform var(--transition-fast),
+        box-shadow var(--transition-fast),
+        background var(--transition-fast);
+      white-space: nowrap;
+    }
+
+    .btn-primary span.icon {
+      font-size: 16px;
+    }
+
+    .btn-primary::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background: conic-gradient(
+        from 130deg,
+        rgba(255, 255, 255, 0.32),
+        transparent,
+        transparent,
+        rgba(255, 255, 255, 0.55),
+        transparent
+      );
+      opacity: 0;
+      pointer-events: none;
+      animation: beam-sweep 4.4s linear infinite;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px) scale(1.015);
+      background: radial-gradient(circle at top left, #fffbe0, var(--gold));
+      box-shadow:
+        0 0 0 0 rgba(212, 175, 55, 0.7),
+        0 22px 52px rgba(0, 0, 0, 0.9);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0) scale(0.99);
+      animation: none;
+    }
+
+    @keyframes glow-pulse {
+      0% {
+        box-shadow:
+          0 0 0 0 rgba(212, 175, 55, 0.56),
+          0 18px 42px rgba(0, 0, 0, 0.85);
+      }
+      50% {
+        box-shadow:
+          0 0 0 10px rgba(212, 175, 55, 0),
+          0 20px 50px rgba(0, 0, 0, 0.95);
+      }
+      100% {
+        box-shadow:
+          0 0 0 0 rgba(212, 175, 55, 0),
+          0 18px 42px rgba(0, 0, 0, 0.85);
+      }
+    }
+
+    @keyframes beam-sweep {
+      0%   { opacity: 0; transform: translateX(-40%) rotate(0deg); }
+      10%  { opacity: 0.7; }
+      40%  { opacity: 0.15; }
+      100% { opacity: 0; transform: translateX(40%) rotate(360deg); }
+    }
+
+    .btn-ghost {
+      appearance: none;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      background: transparent;
+      color: var(--text-main);
+      padding: 10px 18px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition:
+        border-color var(--transition-fast),
+        background var(--transition-fast),
+        transform var(--transition-fast),
+        color var(--transition-fast);
+    }
+
+    .btn-ghost span.icon {
+      font-size: 16px;
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--gold);
+      background: rgba(11, 5, 35, 0.95);
+      transform: translateY(-1px);
+      color: var(--gold-soft);
+    }
+
+    .hero-meta {
+      font-size: 11px;
+      color: var(--text-muted);
+      max-width: 420px;
+    }
+
+    .hero-visual {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      min-height: 220px;
+      background:
+        radial-gradient(circle at top, rgba(245, 223, 140, 0.35), transparent 60%),
+        linear-gradient(145deg, #1b0720, #2a0a3c, #050309);
+      border: 1px solid rgba(245, 223, 140, 0.5);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .hero-visual-inner {
+      position: absolute;
+      inset: 0;
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .hero-visual-tag {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #140415;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(255, 249, 219, 0.9);
+      align-self: flex-start;
+    }
+
+    .hero-visual-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 6px;
+      margin-top: 12px;
+    }
+
+    .hero-visual-box {
+      border-radius: 10px;
+      background: rgba(11, 6, 35, 0.88);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 6px 7px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .hero-visual-box strong {
+      display: block;
+      font-size: 12px;
+      color: #fef3c7;
+      margin-bottom: 2px;
+    }
+
+    .hero-visual-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      font-size: 11px;
+      color: var(--gold-bright);
+    }
+
+    /* Grids */
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .grid-3-tight {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    @media (max-width: 960px) {
+      .hero-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .grid-4 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .grid-3,
+      .grid-3-tight {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 680px) {
+      .grid-4,
+      .grid-3,
+      .grid-3-tight,
+      .grid-2 {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    /* Why agents */
+    .why-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle);
+      padding: 14px 14px 12px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .why-icon {
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      background: radial-gradient(circle at 30% 20%, var(--gold-bright), var(--gold));
+      color: #140415;
+      margin-bottom: 6px;
+      box-shadow: var(--shadow-chip);
+    }
+
+    .why-card h3 {
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+
+    .why-card p {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* What to send */
+    .what-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      padding: 16px 16px 12px;
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .what-card h3 {
+      font-size: 15px;
+      margin-bottom: 6px;
+    }
+
+    .what-card ul {
+      list-style: none;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .what-card li {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .bullet {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      margin-top: 6px;
+      background: linear-gradient(to right, var(--gold), var(--purple-mid));
+      flex-shrink: 0;
+    }
+
+    /* Process */
+    .process-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      padding: 16px 16px 14px;
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .process-step {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--gold-soft);
+      margin-bottom: 4px;
+    }
+
+    .process-card h3 {
+      font-size: 15px;
+      margin-bottom: 6px;
+    }
+
+    .process-card p {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* Testimonials */
+    .testimonial-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      padding: 16px 16px 12px;
+      box-shadow: var(--shadow-soft);
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .testimonial-card p {
+      margin-bottom: 8px;
+    }
+
+    .testimonial-name {
+      font-size: 12px;
+      color: var(--gold-soft);
+    }
+
+    .testimonial-meta {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    /* Specialty */
+    .specialty-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      padding: 16px;
+      box-shadow: var(--shadow-soft);
+      font-size: 13px;
+    }
+
+    .specialty-chip {
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(245, 223, 140, 0.6);
+      background: rgba(11, 5, 36, 0.95);
+      color: var(--gold-soft);
+      display: inline-block;
+      margin-bottom: 6px;
+    }
+
+    .specialty-card h3 {
+      font-size: 15px;
+      margin-bottom: 6px;
+    }
+
+    .specialty-card ul {
+      list-style: none;
+      margin-top: 4px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .specialty-card li {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    /* CTA banner */
+    .cta-banner {
+      border-radius: var(--radius-lg);
+      padding: 20px 18px 16px;
+      background:
+        radial-gradient(circle at top left, rgba(245, 223, 140, 0.18), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(94, 46, 145, 0.55), transparent 65%),
+        rgba(11, 4, 28, 0.96);
+      border: 1px solid rgba(245, 223, 140, 0.5);
+      box-shadow: var(--shadow-soft);
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 14px;
+      align-items: center;
+    }
+
+    .cta-banner h2 {
+      font-size: 20px;
+      letter-spacing: -0.03em;
+      margin-bottom: 6px;
+    }
+
+    .cta-banner p {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .cta-small {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    @media (max-width: 820px) {
+      .cta-banner {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    /* Form section */
+    .form-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      padding: 18px 18px 16px;
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px 14px;
+    }
+
+    @media (max-width: 720px) {
+      .form-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 13px;
+    }
+
+    label {
+      font-size: 12px;
+      color: var(--gold-soft);
+    }
+
+    input,
+    select,
+    textarea {
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: rgba(8, 4, 26, 0.96);
+      color: var(--text-main);
+      padding: 8px 10px;
+      font-size: 13px;
+      outline: none;
+      transition:
+        border-color var(--transition-fast),
+        box-shadow var(--transition-fast),
+        background var(--transition-fast),
+        transform var(--transition-fast);
+      font-family: inherit;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 1px rgba(212, 175, 55, 0.5);
+      background: rgba(11, 6, 35, 0.96);
+      transform: translateY(-1px);
+    }
+
+    ::placeholder {
+      color: #8f84b8;
+    }
+
+    textarea {
+      min-height: 70px;
+      resize: vertical;
+    }
+
+    .helper-text {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin: 8px 0 10px;
+    }
+
+    .submit-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
+    .submit-row p {
+      font-size: 11px;
+      color: var(--text-muted);
+      max-width: 280px;
+    }
+
+    .submit-row strong {
+      color: var(--gold-soft);
+    }
+
+    /* Automation explanation */
+    .automation-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      padding: 16px 16px 14px;
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-soft);
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .automation-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 840px) {
+      .automation-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .automation-item {
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: rgba(11, 5, 38, 0.96);
+      padding: 10px 10px 8px;
+      font-size: 12px;
+    }
+
+    .automation-item h3 {
+      font-size: 13px;
+      margin-bottom: 4px;
+      color: var(--gold-soft);
+    }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition:
+        opacity 420ms ease-out,
+        transform 420ms ease-out;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 640px) {
+      .hero-grid {
+        gap: 16px;
+      }
+      .hero-title {
+        font-size: 24px;
+      }
+      .card {
+        border-radius: 18px;
+      }
+    }
+
+    footer {
+      margin-top: 40px;
+      font-size: 11px;
+      color: var(--text-muted);
+      text-align: center;
+      opacity: 0.8;
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <!-- HERO (Section 1) -->
+    <section class="card reveal" id="top">
+      <div class="card-inner">
+        <div class="brand-row">
+          <img src="golden-rule-logo.png" alt="Golden Rule Properties logo" />
+          <div class="brand-divider"></div>
+          <img src="ainstein-logo.png" alt="A.I.nstein Automations logo" />
+        </div>
+
+        <div class="hero-grid">
+          <div>
+            <div class="tag-pill">
+              <span class="tag-dot"></span>
+              <span>Agent Partner Portal • Bring Me Your Deals</span>
+            </div>
+
+            <h1 class="hero-title">
+              Bring Me Your <span class="emphasis">Problem Properties</span> — I’ll Help You Close More Deals.
+            </h1>
+
+            <p class="hero-sub">
+              I’m an investor who solves problems, closes fast, and protects your commission 100%.
+              If you have a listing that’s distressed, stale, low-equity, funky, or needs creative
+              solutions — I’m your guy.
+            </p>
+
+            <div class="hero-badges">
+              <span class="hero-badge highlight">Commission protected</span>
+              <span class="hero-badge">Cash & creative offers</span>
+              <span class="hero-badge">Investor-friendly, agent-first</span>
+            </div>
+
+            <div class="hero-cta-row">
+              <button class="btn-primary" type="button" onclick="document.getElementById('deal-form').scrollIntoView({behavior:'smooth'});">
+                <span>Send a Deal</span>
+                <span class="icon">↳</span>
+              </button>
+              <button class="btn-ghost" type="button" onclick="document.getElementById('process').scrollIntoView({behavior:'smooth'});">
+                <span>See How It Works</span>
+                <span class="icon">↓</span>
+              </button>
+            </div>
+
+            <p class="hero-meta">
+              Based in Delaware & Philly, buying nationwide. I do the deals retail buyers say “no” to, so you don’t have to walk away empty-handed.
+            </p>
+          </div>
+
+          <!-- Hero visual / placeholder for Gemini image -->
+          <aside class="hero-visual" aria-label="Modern house with AI data overlay (visual placeholder)">
+            <div class="hero-visual-inner">
+              <div class="hero-visual-tag">Problem Listings → Closed Deals</div>
+
+              <div class="hero-visual-grid">
+                <div class="hero-visual-box">
+                  <strong>Stale Listings</strong>
+                  30+ days on market, stuck on price, seller losing patience.
+                </div>
+                <div class="hero-visual-box">
+                  <strong>Low Equity</strong>
+                  Creative structures so you still get paid — subject-to, seller finance, novations.
+                </div>
+                <div class="hero-visual-box">
+                  <strong>Heavy Repairs</strong>
+                  “Won’t pass inspection” is where I start, not where I stop.
+                </div>
+              </div>
+
+              <div class="hero-visual-footer">
+                <span>Visual placeholder – replace with Gemini design.</span>
+                <span>Built for agents who hate dead deals.</span>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY AGENTS LOVE WORKING WITH YOU (Section 2) -->
+    <section class="reveal">
+      <div class="section-header">
+        <div class="section-label">Why agents love working with me</div>
+        <div class="section-title-row">
+          <h2>More deals closed. Less drama.</h2>
+          <p>
+            I’m not here to replace your retail buyers — I’m here for the deals they can’t or won’t touch.
+            You keep the relationship with your seller. I bring the solution and make you look like the hero.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid-4">
+        <article class="why-card">
+          <div class="why-icon">💰</div>
+          <h3>You always get paid</h3>
+          <p>Your commission is protected — even on creative deals. We structure it so you’re taken care of.</p>
+        </article>
+
+        <article class="why-card">
+          <div class="why-icon">⚡</div>
+          <h3>Fast, no-drama closings</h3>
+          <p>I buy cash, creative, or hybrid. No tire-kickers. No endless “thinking about it.” Just clear answers.</p>
+        </article>
+
+        <article class="why-card">
+          <div class="why-icon">🏚️</div>
+          <h3>I take the headaches</h3>
+          <p>Bad tenants, mold, hoarders, code issues, low equity — bring it. I specialize in problems.</p>
+        </article>
+
+        <article class="why-card">
+          <div class="why-icon">📞</div>
+          <h3>Instant communication</h3>
+          <p>No ghosting. No games. No dragging feet. If I say I’m in, I show up and close.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- WHAT TO SEND (Section 3) -->
+    <section class="reveal">
+      <div class="section-header">
+        <div class="section-label">What to send me</div>
+        <div class="section-title-row">
+          <h2>This is where agents wake up.</h2>
+          <p>
+            Most agents don’t realize which properties are a perfect fit for an investor partner.
+            Here’s exactly what to keep an eye out for in your pipeline and your MLS dashboard.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <article class="what-card">
+          <h3>✔ Stale Listings (30+ Days on Market)</h3>
+          <ul>
+            <li><span class="bullet"></span><span>Price too high for retail but seller won’t budge.</span></li>
+            <li><span class="bullet"></span><span>Lots of showings, zero serious offers.</span></li>
+            <li><span class="bullet"></span><span>Sellers getting frustrated or talking about “just renting it.”</span></li>
+          </ul>
+        </article>
+
+        <article class="what-card">
+          <h3>✔ Ugly or Distressed Homes</h3>
+          <ul>
+            <li><span class="bullet"></span><span>Buyers don’t want them — investors LOVE them.</span></li>
+            <li><span class="bullet"></span><span>Heavy cosmetic or major repairs needed.</span></li>
+            <li><span class="bullet"></span><span>Smells, hoarders, dated, “rough around the edges.”</span></li>
+          </ul>
+        </article>
+
+        <article class="what-card">
+          <h3>✔ Low-Equity / No-Equity Homes</h3>
+          <ul>
+            <li><span class="bullet"></span><span>After commissions and closing costs, there’s almost nothing left.</span></li>
+            <li><span class="bullet"></span><span>Behind on payments, foreclosure risk, or needing debt relief.</span></li>
+            <li><span class="bullet"></span><span>Subject-to & seller-financing solutions get everyone paid.</span></li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="grid-3-tight" style="margin-top: 14px;">
+        <article class="what-card">
+          <h3>✔ Won’t Pass Inspection</h3>
+          <ul>
+            <li><span class="bullet"></span><span>Foundation, roof, plumbing, electrical, structural issues.</span></li>
+            <li><span class="bullet"></span><span>Lenders nervous, buyers crushed after inspection.</span></li>
+            <li><span class="bullet"></span><span>I’m not scared of “fails inspection” — that’s where I lean in.</span></li>
+          </ul>
+        </article>
+
+        <article class="what-card">
+          <h3>✔ Sellers Who Need Fast or Creative Solutions</h3>
+          <ul>
+            <li><span class="bullet"></span><span>Foreclosure, relocation, divorce, inherited property.</span></li>
+            <li><span class="bullet"></span><span>They want speed and certainty, not endless showings.</span></li>
+            <li><span class="bullet"></span><span>They “just want it gone” but still need help.</span></li>
+          </ul>
+        </article>
+
+        <article class="what-card">
+          <h3>✔ Anything That Feels “Hard to Sell”</h3>
+          <ul>
+            <li><span class="bullet"></span><span>Weird layout, tough neighborhood, funky story.</span></li>
+            <li><span class="bullet"></span><span>If your first thought is “who would buy this?” — send it.</span></li>
+            <li><span class="bullet"></span><span>If they don’t want it… I probably do.</span></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS (Section 4) -->
+    <section class="reveal" id="process">
+      <div class="section-header">
+        <div class="section-label">How the process works</div>
+        <div class="section-title-row">
+          <h2>Straightforward. Zero friction.</h2>
+          <p>
+            No complicated portals. No ten-step hoops. Just a simple, guided flow to turn your “stuck”
+            properties into closed deals while protecting your relationship with the seller.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <article class="process-card">
+          <div class="process-step">Step 1</div>
+          <h3>Submit the property</h3>
+          <p>
+            You send the address, basic condition notes, seller situation, and a link to photos or the MLS.
+            The form below takes about 60 seconds to complete.
+          </p>
+        </article>
+
+        <article class="process-card">
+          <div class="process-step">Step 2</div>
+          <h3>I evaluate within hours</h3>
+          <p>
+            I run the numbers, look at ARV, and map out options — cash, creative, or hybrid.
+            You get a clear, written plan instead of guesswork.
+          </p>
+        </article>
+
+        <article class="process-card">
+          <div class="process-step">Step 3</div>
+          <h3>We close & you get paid</h3>
+          <p>
+            You stay in the middle. Your commission is protected, your seller gets a solution, and your “dead deal”
+            turns into a closed one on your scoreboard.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS (Section 5) -->
+    <section class="reveal">
+      <div class="section-header">
+        <div class="section-label">Agent testimonials (real & future)</div>
+        <div class="section-title-row">
+          <h2>Built for agents who actually care about their clients.</h2>
+          <p>
+            These are the types of experiences I aim to create with every agent I partner with.
+            As we close deals together, your name and story can live here too.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <article class="testimonial-card">
+          <p>
+            “J.C. turned a dead listing into a deal that closed in 14 days. Total pro from start
+            to finish — my seller felt taken care of and I got paid.”
+          </p>
+          <div class="testimonial-name">Phoenix Agent</div>
+          <div class="testimonial-meta">Stale listing • Heavy repairs • Creative structure</div>
+        </article>
+
+        <article class="testimonial-card">
+          <p>
+            “He solved a low-equity situation I didn’t think was savable. My client walked away relieved
+            instead of stuck. This is someone I can confidently call again.”
+          </p>
+          <div class="testimonial-name">Wilmington Realtor</div>
+          <div class="testimonial-meta">Low equity • Behind on payments • Subject-to solution</div>
+        </article>
+
+        <article class="testimonial-card">
+          <p>
+            “Super easy to work with. Fast, clear, honest — and he closes. No drama, no disappearing,
+            no last-minute games.”
+          </p>
+          <div class="testimonial-name">Philadelphia Agent</div>
+          <div class="testimonial-meta">Distressed property • Straightforward cash close</div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SPECIALTY (Section 6) -->
+    <section class="reveal">
+      <div class="section-header">
+        <div class="section-label">What I specialize in</div>
+        <div class="section-title-row">
+          <h2>Cash offers. Creative solutions. AI-backed speed.</h2>
+          <p>
+            I don’t just toss out lowball numbers and cross my fingers. I use multiple exit strategies so
+            more of your listings become closable — and you’re the one who made it happen.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <article class="specialty-card">
+          <span class="specialty-chip">Card 1 — Cash offers</span>
+          <h3>Fast. Clean. No drama.</h3>
+          <p>
+            For the seller who wants speed and certainty more than every last dollar, a clean cash offer
+            can be the perfect tool.
+          </p>
+          <ul>
+            <li><span class="bullet"></span><span>Vacant or inherited property.</span></li>
+            <li><span class="bullet"></span><span>Heavy repairs or “as-is only” situations.</span></li>
+            <li><span class="bullet"></span><span>Seller is done and just wants it off their plate.</span></li>
+          </ul>
+        </article>
+
+        <article class="specialty-card">
+          <span class="specialty-chip">Card 2 — Creative financing</span>
+          <h3>When equity is tight.</h3>
+          <p>
+            Subject-to, seller finance, wraps, novations — I do the deals other buyers don’t even understand,
+            so your seller doesn’t lose.
+          </p>
+          <ul>
+            <li><span class="bullet"></span><span>Little to no equity after commissions and costs.</span></li>
+            <li><span class="bullet"></span><span>Behind on payments, foreclosure clock ticking.</span></li>
+            <li><span class="bullet"></span><span>Seller needs their price, not a lowball.</span></li>
+          </ul>
+        </article>
+
+        <article class="specialty-card">
+          <span class="specialty-chip">Card 3 — Investor-friendly automations</span>
+          <h3>AI-driven speed & follow-through.</h3>
+          <p>
+            I use automations and AI so you get fast answers, rapid evaluations, and consistent communication —
+            not “let me get back to you next week.”
+          </p>
+          <ul>
+            <li><span class="bullet"></span><span>New submissions get reviewed quickly.</span></li>
+            <li><span class="bullet"></span><span>Clear expectations set for you and the seller.</span></li>
+            <li><span class="bullet"></span><span>Long-term partnership, not a one-off transaction.</span></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- CTA (Section 7) -->
+    <section class="reveal">
+      <div class="cta-banner">
+        <div>
+          <div class="section-label">Call to action</div>
+          <h2>Have a deal that needs an investor? Let’s close it together.</h2>
+          <p>
+            If you’re already thinking of a property while reading this, that’s your sign.
+            Send it my way and let’s see if we can save it from dying on the MLS.
+          </p>
+          <p class="cta-small">
+            You can submit the property in under a minute. I’ll review and respond as quickly as possible —
+            usually the same day for most submissions.
+          </p>
+        </div>
+        <div style="text-align:right;">
+          <button class="btn-primary" type="button" onclick="document.getElementById('deal-form').scrollIntoView({behavior:'smooth'});">
+            <span>Submit a Property</span>
+            <span class="icon">↳</span>
+          </button>
+          <div class="cta-small" style="margin-top:8px;">
+            Prefer to talk first? Call or text <strong>(267) 277-3188</strong> or email
+            <strong>GoldenRuleHomes302@gmail.com</strong>.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FORM (Section 8) -->
+    <section class="reveal" id="deal-form">
+      <div class="section-header">
+        <div class="section-label">Property submission form</div>
+        <div class="section-title-row">
+          <h2>Tell me about the property. I’ll handle the heavy lifting.</h2>
+          <p>
+            Only ask for what matters. This form is designed to capture the essentials so I can evaluate
+            quickly and come back with real options for you and your seller.
+          </p>
+        </div>
+      </div>
+
+      <div class="form-card">
+        <!-- TODO: replace action="#" with your Formspree / Airtable / GoHighLevel endpoint -->
+        <form action="#" method="post">
+          <div class="form-grid">
+            <div class="field-group">
+              <label for="agent-name">Agent name</label>
+              <input id="agent-name" name="Agent Name" type="text" placeholder="Your full name" required />
+            </div>
+
+            <div class="field-group">
+              <label for="brokerage">Brokerage (optional)</label>
+              <input id="brokerage" name="Brokerage" type="text" placeholder="e.g., XYZ Realty" />
+            </div>
+
+            <div class="field-group">
+              <label for="agent-email">Agent email</label>
+              <input id="agent-email" name="Agent Email" type="email" placeholder="you@brokerage.com" required />
+            </div>
+
+            <div class="field-group">
+              <label for="agent-phone">Agent phone</label>
+              <input id="agent-phone" name="Agent Phone" type="tel" placeholder="Best number for quick follow-up" required />
+            </div>
+
+            <div class="field-group">
+              <label for="address">Property address</label>
+              <input id="address" name="Property Address" type="text" placeholder="123 Main St, City, State" required />
+            </div>
+
+            <div class="field-group">
+              <label for="asking">Asking price</label>
+              <input id="asking" name="Asking Price" type="text" placeholder="$" />
+            </div>
+
+            <div class="field-group">
+              <label for="condition">General condition</label>
+              <select id="condition" name="Condition">
+                <option value="">Choose one</option>
+                <option value="turnkey">Turnkey / light cosmetic</option>
+                <option value="cosmetic">Needs cosmetic updates</option>
+                <option value="major">Major repairs / heavy distress</option>
+                <option value="won't pass">Won’t pass inspection / major issues</option>
+              </select>
+            </div>
+
+            <div class="field-group">
+              <label for="situation">Seller situation</label>
+              <select id="situation" name="Seller Situation">
+                <option value="">Choose one</option>
+                <option value="stale">Stale listing (30+ days)</option>
+                <option value="low-equity">Low / no equity</option>
+                <option value="foreclosure">Behind on payments / foreclosure risk</option>
+                <option value="inherited">Inherited / out-of-state owner</option>
+                <option value="tenant">Tenant / eviction / occupancy issues</option>
+                <option value="other">Other complicated situation</option>
+              </select>
+            </div>
+
+            <div class="field-group">
+              <label for="ideal-outcome">Ideal outcome for your seller</label>
+              <select id="ideal-outcome" name="Ideal Outcome">
+                <option value="">What do they want most?</option>
+                <option value="speed">Fast close / timeline is key</option>
+                <option value="price">Highest possible price</option>
+                <option value="debt-relief">Debt relief / payment relief</option>
+                <option value="hands-off">Hands-off / no repairs / no showings</option>
+                <option value="combo">A combination of the above</option>
+              </select>
+            </div>
+
+            <div class="field-group" style="grid-column:1 / -1;">
+              <label for="notes">Condition & situation notes</label>
+              <textarea id="notes" name="Condition & Situation Notes" placeholder="Briefly describe condition, repairs, motivation, and anything else I should know."></textarea>
+            </div>
+
+            <div class="field-group" style="grid-column:1 / -1;">
+              <label for="link">Photos / MLS link (optional)</label>
+              <input id="link" name="Photos or MLS Link" type="url" placeholder="https://..." />
+            </div>
+          </div>
+
+          <p class="helper-text">
+            The more context you share, the better I can structure a win–win solution for you and your seller.
+          </p>
+
+          <div class="submit-row">
+            <button class="btn-primary" type="submit">
+              <span>Send This Deal</span>
+              <span class="icon">⚡</span>
+            </button>
+            <p>
+              After you submit, I’ll review and get back to you as quickly as possible —
+              <strong>usually same day</strong> for most properties.
+            </p>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- AUTOMATION ON YOUR END (Section 9) -->
+    <section class="reveal">
+      <div class="section-header">
+        <div class="section-label">What happens after you hit submit</div>
+        <div class="section-title-row">
+          <h2>Automation on my end — clarity on yours.</h2>
+          <p>
+            I use AI and systems behind the scenes so your deals don’t get lost in the shuffle.
+            Here’s what you can expect once you send a property through this page.
+          </p>
+        </div>
+      </div>
+
+      <div class="automation-card">
+        <p>
+          When you submit a deal, I don’t let it sit. My system kicks in to acknowledge your submission,
+          queue the evaluation, and keep you posted — without you having to chase me.
+        </p>
+
+        <div class="automation-grid">
+          <div class="automation-item">
+            <h3>1. Agent confirmation text</h3>
+            <p>
+              You receive a confirmation message (SMS or email, depending on what we set up) along the lines of:
+              <em>“Thanks for submitting! I’m reviewing the property now. Expect a response from me within the next few hours. – J.C.”</em>
+            </p>
+          </div>
+
+          <div class="automation-item">
+            <h3>2. Evaluation & options</h3>
+            <p>
+              Behind the scenes, I’m running numbers, reviewing photos, and mapping out realistic options:
+              cash, creative, or hybrid. You get a clear, straightforward breakdown — not fluff.
+            </p>
+          </div>
+
+          <div class="automation-item">
+            <h3>3. Next steps & follow-through</h3>
+            <p>
+              If we move forward, I keep you in the loop at every stage. My goal: make this the easiest
+              “problem deal” you’ve ever closed — so I’m the first person you think of next time.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      © <span id="year"></span> Golden Rule Properties & A.I.nstein Automations. Built for win–win deals with agents who care.
+    </footer>
+  </main>
+
+  <script>
+    // Footer year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Simple scroll reveal using IntersectionObserver
+    const reveals = document.querySelectorAll(".reveal");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.18 }
+    );
+    reveals.forEach((el) => observer.observe(el));
+  </script>
+</body>
+</html>
